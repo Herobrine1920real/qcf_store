@@ -1,5 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env 
+set -o errexit
 
 pip install -r requirements.txt
-pthon manage.py collectstatic --noinput
+python manage.py collectstatic --noinput
 python manage.py migrate
