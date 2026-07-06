@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Game Banner -->
+
+<div class="mb-4">
+
+    <img src="{{ game.image.url }}"
+         class="detail-banner"
+         alt="{{ game.title }}">
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-8">
+
+        {% if game.featured %}
+
+            <span class="badge bg-danger fs-6 mb-3">
+                ⭐ Featured Game
+            </span>
+
+        {% endif %}
+
+        <h1 class="fw-bold mb-2">
+
+            {{ game.title }}
+
+        </h1>
+
+        <h2 class="text-danger fw-bold mb-4">
+
+            ₹{{ game.price }}
+
+        </h2>
+
+        <!-- Game Info -->
+
+        <div class="mb-4">
+
+            <span class="info-chip">
+                🎮 {{ game.genre }}
+            </span>
+
+            <span class="info-chip">
+                💻 {{ game.platform }}
+            </span>
+
+            <span class="info-chip">
+                📦 Stock: {{ game.stock }}
+            </span>
+
+        </div>
+
+        <!-- Description -->
+
+        <div class="game-description mb-4">
+
+            <h4 class="mb-3">
+                About this Game
+            </h4>
+
+            <p class="mb-0">
+
+                {{ game.description }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Purchase Card -->
+
+    <div class="col-lg-4">
+
+        <div class="card border-0 shadow rounded-4 sticky-top">
+
+            <div class="card-body text-center p-4">
+
+                <h2 class="text-danger fw-bold mb-4">
+
+                    ₹{{ game.price }}
+
+                </h2>
+
+                <a href="{% url 'add_to_cart' game.id %}"
+                   class="btn btn-danger btn-lg rounded-pill w-100 mb-3">
+
+                    🛒 Add to Cart
+
+                </a>
+
+                <a href="{% url 'home' %}"
+                   class="btn btn-outline-secondary rounded-pill w-100">
+
+                    ← Back to Store
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

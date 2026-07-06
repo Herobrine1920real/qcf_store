@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QCF Store</title>
+
+    <link rel="icon" href="{% static 'games/images/favicon.png' %}">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'games/css/style.css' %}">
+
+</head>
+
+<body class="bg-light">
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow">
+
+    <div class="container">
+
+        <!-- Logo -->
+
+        <a class="navbar-brand" href="{% url 'home' %}">
+
+            <img
+                src="{% static 'games/images/logo_white.png' %}"
+                alt="QCF Store"
+                height="52">
+
+        </a>
+
+        <!-- Mobile Toggle -->
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+
+            <!-- Search -->
+
+            <form
+                class="d-flex mx-auto"
+                method="GET"
+                action="{% url 'home' %}"
+                style="max-width:500px; width:100%;">
+
+                {% if selected_genre %}
+                    <input
+                        type="hidden"
+                        name="genre"
+                        value="{{ selected_genre }}">
+                {% endif %}
+
+                <input
+                    class="form-control rounded-pill me-2"
+                    type="search"
+                    placeholder="Search fighting games..."
+                    name="search"
+                    value="{{ query|default:''}}">
+
+                <button
+                    class="btn btn-light rounded-pill"
+                    type="submit">
+
+                    Search
+
+                </button>
+
+            </form>
+
+            <!-- Cart -->
+
+            <a href="{% url 'cart' %}"
+   class="btn btn-light rounded-pill ms-lg-3 d-flex align-items-center">
+
+    <img
+        src="{% static 'games/images/cart_icon.png' %}"
+        width="24"
+        class="me-2">
+
+    Cart
+
+    {% if cart_count > 0 %}
+
+    <span class="badge bg-danger ms-2">
+
+        {{ cart_count }}
+
+    </span>
+
+    {% endif %}
+
+</a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- ================= PAGE CONTENT ================= -->
+
+<main class="container my-4">
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="bg-dark text-white mt-5">
+
+    <div class="container text-center py-5">
+
+        <h3 class="fw-bold mb-3">
+            QCF STORE
+        </h3>
+
+        <p class="mb-1">
+            Built using Django
+        </p>
+
+        <small>
+            © 2026 QCF Store
+        </small>
+
+    </div>
+
+</footer>
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

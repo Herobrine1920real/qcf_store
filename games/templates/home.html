@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= HERO BANNER ================= -->
+
+<div class="mb-5">
+
+    <img src="{% static 'games/images/hero_banner.jpg' %}"
+         class="img-fluid rounded-4 shadow w-100"
+         alt="Hero Banner">
+
+</div>
+
+<!-- ================= GENRES ================= -->
+
+<h4 class="fw-bold mb-3">
+    Browse Genres
+</h4>
+
+<div class="genre-buttons mb-5">
+
+    <a href="{% url 'home' %}"
+       class="genre-btn {% if not selected_genre %}active{% endif %}">
+        All
+    </a>
+
+    {% for genre in genres %}
+
+        <a href="{% url 'home' %}?genre={{ genre.id }}"
+           class="genre-btn {% if selected_genre == genre.id|stringformat:'s' %}active{% endif %}">
+            {{ genre.name }}
+        </a>
+
+    {% endfor %}
+
+</div>
+
+<!-- ================= FEATURED ================= -->
+
+<h2 class="fw-bold mb-4">
+    ⭐ Featured Games
+</h2>
+
+<div class="row g-4 mb-5">
+
+{% for game in featured_games %}
+
+<div class="col-lg-3 col-md-6">
+
+    <div class="card h-100 border-0 shadow game-card">
+
+        <img src="{{ game.image.url }}"
+             class="card-img-top game-image"
+             alt="{{ game.title }}">
+
+        <div class="card-body">
+
+            <span class="badge bg-danger mb-2">
+
+                {{ game.genre }}
+
+            </span>
+
+            <h5 class="fw-bold">
+
+                {{ game.title }}
+
+            </h5>
+
+            <h4 class="text-danger">
+
+                ₹{{ game.price }}
+
+            </h4>
+
+        </div>
+
+        <div class="card-footer bg-white border-0">
+
+            <a href="{% url 'game_detail' game.id %}"
+               class="btn btn-danger rounded-pill w-100">
+
+                View Details
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<!-- ================= ALL GAMES ================= -->
+
+<h2 class="fw-bold mb-4">
+    🎮 Browse All Games
+</h2>
+
+<div class="row g-4">
+
+{% for game in games %}
+
+<div class="col-lg-3 col-md-6">
+
+    <div class="card h-100 border-0 shadow game-card">
+
+        <img src="{{ game.image.url }}"
+             class="card-img-top game-image"
+             alt="{{ game.title }}">
+
+        <div class="card-body">
+
+            <span class="badge bg-danger mb-2">
+
+                {{ game.genre }}
+
+            </span>
+
+            <h5 class="fw-bold">
+
+                {{ game.title }}
+
+            </h5>
+
+            <p class="text-muted mb-2">
+
+                {{ game.platform }}
+
+            </p>
+
+            <h4 class="text-danger">
+
+                ₹{{ game.price }}
+
+            </h4>
+
+        </div>
+
+        <div class="card-footer bg-white border-0">
+
+            <a href="{% url 'game_detail' game.id %}"
+               class="btn btn-danger rounded-pill w-100">
+
+                View Details
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
