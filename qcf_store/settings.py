@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-r3sl!^3s$*rg!$_)71ni&bobo27nu1z3qk!&-j_9suz1(5e$#_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://qcf-store.onrender.com"]
+ALLOWED_HOSTS = ["qcf-store.onrender.com"]
 
 
 # Application definition
@@ -130,4 +130,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-DEBUG = os.environ.get("DEBUG","Faalse") == "True"
+DEBUG = os.environ.get("DEBUG","False") == "True"
