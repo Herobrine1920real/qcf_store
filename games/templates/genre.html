@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ genre.name }}</h1>
+
+<div class="row">
+
+{% for game in games %}
+
+<div class="col-md-4 mb-3">
+
+<div class="card">
+
+<img src="{{ game.image.url }}" class="card-img-top">
+
+<div class="card-body">
+
+<h5>{{ game.title }}</h5>
+
+<p>₹{{ game.price }}</p>
+
+<a href="{% url 'game_detail' game.id %}" class="btn btn-primary">
+View
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

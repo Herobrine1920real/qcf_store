@@ -1,0 +1,1 @@
+web: gunicorn qcf_store.wsgi
